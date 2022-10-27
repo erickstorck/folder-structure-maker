@@ -1,0 +1,53 @@
+[
+    {
+        "type": "folder",
+        "name": "my_first_folder",
+        "id": "1",
+        "children": [
+            {
+                "type": "file",
+                "name": "first_doc.html",
+                "id": "2"
+            },
+            {
+                "type": "file",
+                "name": "second_doc.jpeg",
+                "id": "3"
+            },
+            {
+                "type": "folder",
+                "name": "my_second_folder",
+                "id": "4",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "file_in_second_folder.jpeg",
+                        "id": "5"
+                    },
+                    {
+                        "type": "folder",
+                        "name": "another_folder",
+                        "id": "6",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "random.txt",
+                                "id": "7"
+                            },
+                            {
+                                "type": "file",
+                                "name": "another_file.png",
+                                "id": "8"
+                            },
+                            {
+                                "type": "file",
+                                "name": "helloworld.html",
+                                "id": "9"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

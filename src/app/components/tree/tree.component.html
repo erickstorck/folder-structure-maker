@@ -1,0 +1,58 @@
+<div *ngFor="let node of folderStructure" class="folder-structure">
+    <div class="node-item">
+        <mat-icon [svgIcon]="node.type"></mat-icon> {{node.name}}
+        <button *ngIf="node.type == 'folder'" mat-icon-button class="management-button" (click)="addNode.emit(node.id)">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+        <button mat-icon-button class="management-button" (click)="removeNode.emit(node.id)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+    <div *ngIf="node.children">
+        <tree [folderStructure]="node.children" (addNode)="addNode.emit()" (removeNode)="removeNode.emit()"
+            style="display: flex; flex-direction: column;"></tree>
+    </div>
+</div>
+<new-node *ngIf="showInput" [id]='id' class="main-input" (deleteComponent)="toggleInput('','')"
+    [folderStructure]="folderStructure" [father]="name"></new-node>
+<style>
+    .main-input {
+        margin: 10px auto 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: solid 1px black;
+        border-radius: 5px;
+        padding: 0 10px;
+    }
+
+    .management-button {
+        opacity: 0;
+        transition: opacity .2s;
+    }
+
+    .node-item {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        border: solid 1px transparent;
+        border-radius: 5px;
+        margin-right: auto;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .node-item:hover {
+        border: solid 1px black;
+    }
+
+    .node-item:hover .management-button {
+        opacity: 1;
+    }
+
+    .folder-structure {
+        margin-left: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
