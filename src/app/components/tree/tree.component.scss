@@ -1,0 +1,21 @@
+.add-root-button {
+    background: black;
+    border-radius: 5px;
+    border: solid 1px white;
+    color: white;
+    margin: 10px auto 0 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.json-display {
+    background: black;
+    color: white;
+    padding: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+}

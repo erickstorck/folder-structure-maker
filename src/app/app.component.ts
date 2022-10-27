@@ -9,11 +9,10 @@ import { DomSanitizer } from "@angular/platform-browser";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit {
   title = 'folder-structure-maker';
-  folderStructure: NodeModel[]
-  showInput: boolean = false
-  newValue: string = ''
+
+  folderJson: NodeModel[] = []
 
   constructor(
     private matIconRegistry: MatIconRegistry,
@@ -22,25 +21,8 @@ export class AppComponent implements OnInit, OnChanges {
     ['file', 'folder'].forEach(e => this.matIconRegistry.addSvgIcon(e, this.domSanitizer.bypassSecurityTrustResourceUrl(`../assets/icons/${e}.svg`)))
   }
 
-  ngOnInit() {
-    this.folderStructure = baseFolderStructure
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes: ', changes)
-  }
-
-  addNode(id: string = '2') {
-    console.log('add', id)
-  }
-
-  removeNode(id: string = '1') {
-    console.log('remove', id)
-  }
-
-  toggleInput() {
-    this.showInput = !this.showInput
-    this.newValue = ''
-    if (this.showInput == false) console.log('folder structure: ', this.folderStructure)
+  ngOnInit(): void {
+    // load test json
+    // this.folderJson = baseFolderStructure
   }
 }

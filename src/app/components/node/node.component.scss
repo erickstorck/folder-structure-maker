@@ -1,0 +1,28 @@
+.main-nodes-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.node-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 5px 0 5px;
+    margin: 10px auto 0 10px;
+    border: solid 1px transparent;
+    border-radius: 5px;
+}
+
+.node-button {
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.node-container:hover {
+    border: solid 1px black;
+}
+
+.node-container:hover .node-button {
+    opacity: 1;
+}

@@ -1,0 +1,21 @@
+<div *ngIf="!node.removed" class="main-nodes-container">
+    <div class="node-container">
+        <mat-icon [svgIcon]="node.type"></mat-icon>
+        <input #nodeinput *ngIf="node.name == ''" type="text" [(ngModel)]="nodeName"
+            (keyup.enter)="addNodeName(nodeName)" class="node-input">
+        {{node.name}}
+        <button *ngIf="node.name == ''" mat-icon-button (click)='addNodeName(nodeName)' class="node-button">
+            <mat-icon>check_circle</mat-icon>
+        </button>
+        <button *ngIf="node.name != '' && node.type == 'folder'" mat-icon-button (click)='newNode(node.id)'
+            class="node-button">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+        <button mat-icon-button (click)='removeNode.emit(node.id)' class="node-button">
+            <mat-icon *ngIf="node.name == ''">cancel</mat-icon>
+            <mat-icon *ngIf="node.name != ''">delete</mat-icon>
+        </button>
+    </div>
+    <node *ngFor="let subNode of node.children" (removeNode)="removeNode.emit($event)"
+        (appendNode)="appendNode.emit($event)" [node]="subNode" style="margin-left: 20px;"></node>
+</div>

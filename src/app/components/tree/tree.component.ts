@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NodeModel } from 'src/node.model';
 
 @Component({
@@ -6,35 +6,60 @@ import { NodeModel } from 'src/node.model';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss']
 })
-export class TreeComponent implements OnInit, OnChanges {
+export class TreeComponent implements OnInit {
 
-  @Input() folderStructure: NodeModel[];
-  @Output() addNode = new EventEmitter<any>();
-  @Output() removeNode = new EventEmitter<any>();
-
-  showInput: boolean = false
-  newValue: string = ''
-
-  id = ''
-  name = ''
+  @Input() folderJson: NodeModel[]
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log('tree changes: ', changes)
-    // console.log('folder structure: ', this.folderStructure)
+  addRoot() {
+    // add a new node on root
+    this.folderJson.push({
+      type: 'folder',
+      name: '',
+      children: [],
+      id: Math.floor(Math.random() * Date.now())
+    })
   }
 
-  toggleInput(id: string, name: string) {
-    this.id = id
-    this.name = name
-    this.showInput = !this.showInput
-    this.newValue = ''
+  removeNode(id: number) {
+    this.markAsRemoved(this.folderJson, id)
+  }
 
-    // if (this.showInput == false) console.log('folderBase', this.folderBase)
+  markAsRemoved(list: NodeModel[], id: number) {
+    // recursive function to remove a node from the right place
+    if (list.some(node => node.id == id)) {
+      list.map(node => {
+        if (node.id == id) node.removed = true
+      })
+    } else {
+      list.forEach(subNode => this.markAsRemoved(subNode.children, id))
+    }
+  }
+
+  appendNode(id: number) {
+    this.addNode(this.folderJson, id)
+  }
+
+  addNode(list: NodeModel[], id: number) {
+    // recursive function to add a new node on the right place
+    if (list.some(node => node.id == id)) {
+      list.find(node => node.id == id)?.children.push({
+        type: 'folder',
+        name: '',
+        children: [],
+        id: Math.floor(Math.random() * Date.now())
+      })
+    } else {
+      list.forEach(subNode => this.addNode(subNode.children, id))
+    }
+  }
+
+  showJson() {
+    return JSON.stringify(this.folderJson, null, '  ')
   }
 
 }

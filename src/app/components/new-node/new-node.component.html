@@ -1,8 +1,0 @@
-<mat-icon [svgIcon]="newValue.includes('.') ? 'file' : 'folder'"></mat-icon> <input matInput type="text"
-    [(ngModel)]="newValue">
-<button matSuffix mat-icon-button (click)="newNode(newValue)">
-    <mat-icon>done</mat-icon>
-</button>
-<button matSuffix mat-icon-button (click)="deleteComponent.emit()">
-    <mat-icon>close</mat-icon>
-</button>

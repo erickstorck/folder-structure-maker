@@ -1,47 +1,6 @@
-<div class="main-header">
+<div class="header">
   FOLDER STRUCTURE MAKER
 </div>
-<div id='main-container' class="main-container">
-  <button mat-button class="main-button" (click)="toggleInput()">Add folder to root</button>
-  <tree [folderStructure]="folderStructure" (addNode)="addNode()" (removeNode)="removeNode()"
-    style="margin-left: -30px;">
-  </tree>
-  <new-node *ngIf="showInput" class="main-input" (deleteComponent)="toggleInput()" [folderStructure]="folderStructure"
-    [father]="'root'"></new-node>
+<div class="main-container">
+  <tree [folderJson]="folderJson"></tree>
 </div>
-<style>
-  .main-input {
-    margin: 10px auto 0 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: solid 1px black;
-    border-radius: 5px;
-    padding: 0 10px;
-  }
-
-  .main-button {
-    background: black;
-    border-radius: 5px;
-    border: solid 1px white;
-    color: white;
-    margin: 10px auto 0 10px;
-  }
-
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-  }
-
-  .main-header {
-    display: flex;
-    background: black;
-    color: white;
-    width: 100%;
-    height: 7vh;
-    font-weight: bold;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
