@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import baseFolderStructure from '../folder-structure.json';
 import { NodeModel } from '../node.model';
 import { MatIconRegistry } from "@angular/material/icon";
